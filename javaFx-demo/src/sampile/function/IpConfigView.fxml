@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sampile.function.IpConfigController"
-            prefHeight="300.0" prefWidth="500.0">
-
+<AnchorPane prefHeight="722.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sampile.function.IpConfigController">
+   <children>
+      <TabPane tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="查本机IP">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="722.0" prefWidth="837.0">
+                     <children>
+                        <GridPane layoutY="2.0" prefHeight="632.0" prefWidth="837.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="78.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="585.0" minWidth="10.0" prefWidth="585.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="423.0" minWidth="10.0" prefWidth="66.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="495.0" minHeight="10.0" prefHeight="411.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="224.0" minHeight="10.0" prefHeight="187.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button fx:id="ipConfigButton" mnemonicParsing="false" onAction="#ipConfigOnAction" text="ipconfig" GridPane.columnIndex="1" />
+                              <TextArea fx:id="ipConfigTextArea" prefHeight="410.0" prefWidth="585.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Ping地址">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <GridPane layoutY="22.0" prefHeight="701.0" prefWidth="837.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="335.0" minWidth="10.0" prefWidth="13.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="335.0" minWidth="10.0" prefWidth="82.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="10.0" prefWidth="640.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="435.0" minWidth="10.0" prefWidth="97.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="89.0" minHeight="-Infinity" prefHeight="29.0" valignment="BASELINE" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="565.0" minHeight="10.0" prefHeight="386.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="481.0" minHeight="10.0" prefHeight="251.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="IP或域名" GridPane.columnIndex="1" />
+                              <TextField fx:id="ipValueText" GridPane.columnIndex="2" />
+                              <Button fx:id="pingButton" mnemonicParsing="false" onAction="#pingButtonOnAction" text="Ping" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextArea fx:id="pingResultTextArea" prefHeight="337.0" prefWidth="595.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
 </AnchorPane>

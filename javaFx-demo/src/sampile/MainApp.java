@@ -5,28 +5,27 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
-import sampile.common.AbstractStage;
 import sampile.common.constants.GlobalConstants;
 import sampile.common.utils.AlertUtil;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class MainApp extends Application {
 
     private  final StageManager stageManager = StageManager.getInstance();
 
-    private static Label infoLb ;
+    private static ProgressBar loadProgressBar ;
+    private static Label initLabel ;
 
     @FXML
     private LoadingController controller;
@@ -59,8 +58,8 @@ public class MainApp extends Application {
         // 核心代码
         new Thread(() -> {
 
-            initSystem();// 1
-
+            //initSystem();// 1
+            initProgressBar(1.00);
             Platform.runLater(() -> {// 2
                 try {
                     final Stage mainStage =  stageManager.getStage(GlobalConstants.WINDOW.MAIN);
@@ -76,15 +75,52 @@ public class MainApp extends Application {
         }).start();
     }
 
+    private void initProgressBar(Double  progress) {
+        new Thread(()->{
+            for (double initVal = 0 ; initVal < progress ; initVal = initVal + 0.02){
+                if (initVal>=1){
+                    loadProgressBar.setProgress(1.00);
+                    break;
+                }
+                loadProgressBar.setProgress(initVal);
+                try {
+                    TimeUnit.MILLISECONDS.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
+
     // 初始化系统
     private void initSystem() {
         try {
+
+            showInfo("启动中...");
+            initProgressBar((double) 0.10);
+            Thread.sleep(1000);
+
+            initProgressBar((double) 0.20);
+            Thread.sleep(1000);
             showInfo("初始化目录...");
+            initProgressBar((double) 0.30);
             Thread.sleep(1000);
+
             showInfo("初始化系统配置...");
+            initProgressBar((double) 0.50);
             Thread.sleep(1000);
+
+            showInfo("初始化工作空间...");
+            initProgressBar((double) 0.70);
+            Thread.sleep(1000);
+
+            initProgressBar((double) 0.90);
+            Thread.sleep(500);
+
             showInfo("版本检测...");
-            Thread.sleep(1000);
+            initProgressBar((double) 1.00);
+            Thread.sleep(500);
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -92,16 +128,24 @@ public class MainApp extends Application {
 
     // 显示信息
     public static void showInfo(String info) {
-
-        //Platform.runLater(() -> infoLb.setText(info));
+        final String infoShow = info ;
+        new Thread(() -> {
+                Platform.runLater(() -> initLabel.textProperty().set(infoShow));
+        }).start();
     }
 
 
 
     private void initLoading() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("loading.fxml"));
+        Label loadLabel = (Label) root.lookup("#loadLabel");
+        initLabel = loadLabel ;
+        ProgressBar progressBar = (ProgressBar) root.lookup("#loadProgressBar");
+        loadProgressBar = progressBar ;
         primaryStage.setScene(new Scene(root, 600, 375));
+        primaryStage.getIcons().addAll(GlobalConstants.LOGO_IMAGE);
         primaryStage.initStyle(StageStyle.UNDECORATED);//设定窗口无边框
+
     }
 
 
@@ -115,8 +159,8 @@ public class MainApp extends Application {
         Stage mainStage = new Stage();
 
         mainStage.setTitle("张小菜");
-        mainStage.setScene(new Scene(main, 1200, 660));
-        mainStage.getIcons().addAll(new Image(MainApp.class.getResourceAsStream("../images/icon/logo-3.png")));
+        mainStage.setScene(new Scene(main, 1000, 600));
+        mainStage.getIcons().addAll(GlobalConstants.LOGO_IMAGE);
         //设定默认窗口边框
         mainStage.initStyle(StageStyle.DECORATED);
         mainStage.initModality(Modality.APPLICATION_MODAL);
@@ -147,8 +191,9 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        funcStage.setScene(new Scene(anchorPane, 550, 320));
+        funcStage.setScene(new Scene(anchorPane, 850, 520));
         funcStage.initStyle(StageStyle.DECORATED);
+        funcStage.getIcons().addAll(GlobalConstants.LOGO_IMAGE);
         funcStage.setFullScreen(false);
         funcStage.setMinWidth(200);
         funcStage.setMinHeight(100);

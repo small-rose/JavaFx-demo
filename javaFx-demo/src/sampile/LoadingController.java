@@ -1,28 +1,15 @@
 package sampile;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
-import javafx.stage.Modality;
+import javafx.scene.layout.Border;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import sampile.common.AbstractStage;
-import sampile.common.constants.GlobalConstants;
-import sampile.main.MainController;
-import sampile.common.utils.AlertUtil;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -30,7 +17,7 @@ public class LoadingController extends AbstractStage implements Initializable {
 
 
     @FXML
-    private ProgressBar progressBar ;
+    private ProgressBar loadProgressBar ;
     @FXML
     private Label loadLabel ;
     @FXML
@@ -52,12 +39,14 @@ public class LoadingController extends AbstractStage implements Initializable {
 
         //stageManager.addStage(GlobalConstants.WINDOW.MAIN, 1200, 600);
 
-        loadLabel.setPrefSize(600,20);
-
+        //loadLabel.setPrefSize(600,20);
+        loadProgressBar.setBorder(Border.EMPTY);
+        loadLabel.setText("Loading ...");
+        //loadProgressBar.set
         // 50%进度
-        progressBar.setProgress(0.5);
+        //loadProgressBar.setProgress(0.5);
         // 未知的进度
-        progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
+        //loadProgressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
 
         /*
         mainStage = stageManager.getStage(GlobalConstants.WINDOW.MAIN);

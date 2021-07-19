@@ -21,7 +21,7 @@ public class AlertUtil {
 
     private static final Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
 
-    private static final Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+
 
     /**
      * 弹出一个通用的确定对话框
@@ -62,8 +62,8 @@ public class AlertUtil {
      * @param p_header
      * @param p_message
      */
-    public static void  AlertInfoDialog(Stage d_stage, String p_header, String p_message){
-        // Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    public static void  alertInfoDialog(Stage d_stage, String p_header, String p_message){
+        final Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
         infoAlert.setTitle("信息");
         infoAlert.setHeaderText(p_header);
         infoAlert.setContentText(p_message);
@@ -80,7 +80,7 @@ public class AlertUtil {
      * @param p_message
      */
     public static void alertErrorDialog(Stage d_stage, String p_header, String p_message){
-
+        final Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setTitle("错误信息");
         errorAlert.setHeaderText(p_header);
         errorAlert.setContentText(p_message);
