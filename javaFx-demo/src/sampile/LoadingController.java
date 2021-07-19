@@ -1,5 +1,6 @@
 package sampile;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,10 +10,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+import sampile.common.AbstractStage;
+import sampile.common.constants.GlobalConstants;
 import sampile.main.MainController;
 import sampile.common.utils.AlertUtil;
 
@@ -20,8 +26,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoadingController implements Initializable {
+public class LoadingController extends AbstractStage implements Initializable {
 
+
+    @FXML
+    private ProgressBar progressBar ;
+    @FXML
+    private Label loadLabel ;
     @FXML
     private ImageView loadingImageView;
     @FXML
@@ -29,32 +40,32 @@ public class LoadingController implements Initializable {
 
     private Stage mainStage ;
 
-    private  MainController mainController = new MainController();
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("LoadingController ... initialize ");
         //File file = new File("images/icon/logo.jpg");
         //System.out.println(file.getPath());
         //Image logoImage = new Image(file.toURI().toString());
         //loadingImageView.setImage(logoImage);
-    }
 
-    public void startButtonOnAction(ActionEvent event) throws IOException {
-        Stage stage = (Stage) startButton.getScene().getWindow();
-        stage.close();
+        //stageManager.addStage(GlobalConstants.WINDOW.MAIN, 1200, 600);
 
+        loadLabel.setPrefSize(600,20);
 
-        Parent main = null;
-        try {
-            main = FXMLLoader.load(getClass().getResource("main/mainView.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        mainStage = new Stage();
+        // 50%进度
+        progressBar.setProgress(0.5);
+        // 未知的进度
+        progressBar.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
+
+        /*
+        mainStage = stageManager.getStage(GlobalConstants.WINDOW.MAIN);
         mainStage.setTitle("张小菜");
-        mainStage.setScene(new Scene(main, 1000, 500));
         //设定默认窗口边框
         mainStage.initStyle(StageStyle.DECORATED);
 
+        mainStage.initModality(Modality.APPLICATION_MODAL);
         mainStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
             public void handle(WindowEvent event) {
 
@@ -62,11 +73,12 @@ public class LoadingController implements Initializable {
                 if (bool){
                     Platform.exit();
                 }else{
-                    event.consume();
+                    System.out.println("---- show");
+                    mainStage.show();
                 }
             }
         });
-
-        mainStage.show();
+*/
     }
+
 }

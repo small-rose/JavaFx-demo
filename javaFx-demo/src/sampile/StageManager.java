@@ -3,7 +3,9 @@ package sampile;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import sampile.common.AbstractStage;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,7 +17,7 @@ import java.util.HashMap;
  * @date: 2021/7/19 0:15
  * @version: v1.0
  */
-public class StageManager {
+public class StageManager extends AbstractStage {
 
     private final static StageManager INSTANCE = new StageManager();
 
@@ -23,7 +25,27 @@ public class StageManager {
         return INSTANCE;
     }
 
+    @Override
+    public void addStage(String fxmlName, Stage stage) {
+        super.addStage(fxmlName, stage);
+    }
 
+    @Override
+    public Stage getStage(String fxmlName) {
+       return super.getStage(fxmlName);
+    }
+
+
+
+    public void init(String fxmlName){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
 
     private static HashMap hashMapStage = new HashMap();
 
@@ -33,6 +55,7 @@ public class StageManager {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlName));
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.getIcons().addAll(new Image(MainApp.class.getResourceAsStream("../images/icon/logo-3.png")));
             hashMapStage.put(fxmlName, stage);
         } catch (IOException e) {
             e.printStackTrace();
@@ -42,10 +65,15 @@ public class StageManager {
 
     public void addStage(String fxmlName, int sceneWidth, int sceneHeight){
         try {
+            if (hashMapStage.keySet().contains(fxmlName)){
+                System.out.println("fxmlName : "+fxmlName +" is already load !");
+                return;
+            }
             System.out.println("fxmlName : "+fxmlName);
             Parent root = FXMLLoader.load(getClass().getResource(fxmlName));
             Stage stage = new Stage();
             stage.setScene(new Scene(root, sceneWidth, sceneHeight));
+            stage.getIcons().addAll(new Image(MainApp.class.getResourceAsStream("../images/icon/logo-3.png")));
             hashMapStage.put(fxmlName, stage);
         } catch (IOException e) {
             e.printStackTrace();
@@ -71,5 +99,6 @@ public class StageManager {
         return true;
 
     }
+*/
 
 }

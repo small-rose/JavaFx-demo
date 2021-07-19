@@ -15,24 +15,17 @@
          <children>
             <ImageView id="loadingImageView" fitHeight="380.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/icon/logo.jpg" />
+                  <Image url="@../images/icon/logo.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="startButton" layoutX="240.0" layoutY="145.0" mnemonicParsing="false" onAction="#startButtonOnAction" text="Start">
-               <padding>
-                  <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
-               </padding>
-               <font>
-                  <Font name="JetBrains Mono Bold" size="20.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </top>
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ProgressBar prefWidth="600.0" progress="0.0" />
+            <ProgressBar fx:id="progressBar" prefWidth="600.0" progress="0.0" />
+            <Label fx:id="loadLabel" prefWidth="600.0" text="init ..." />
          </children>
       </AnchorPane>
    </center>

@@ -9,6 +9,6 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="sampile.function.IpConfigController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="300.0" prefWidth="500.0">
 
 </AnchorPane>
