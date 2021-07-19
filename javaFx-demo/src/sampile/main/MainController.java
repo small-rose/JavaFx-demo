@@ -101,6 +101,7 @@ public class MainController extends AbstractStage implements Initializable {
         */
 
         if (funcStage == null ) {
+            System.out.println(" funcStage is null ");
             funcStage = stageManager.getStage(GlobalConstants.WINDOW.IP_CONFIG);
             //funcStage = new Stage();
             funcStage.setTitle("IpConfig");
@@ -112,6 +113,7 @@ public class MainController extends AbstractStage implements Initializable {
             funcStage.setMaxHeight(722);
             funcStage.setMaxWidth(837);
             funcStage.setMaximized(false);
+            funcStage.setResizable(false);
         }
         funcStage.show();
 
@@ -123,6 +125,8 @@ public class MainController extends AbstractStage implements Initializable {
 
             }
         });
+
+
     }
 
 

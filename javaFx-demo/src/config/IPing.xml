@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<IPList>
+    <IPing>
+        <IP>baidu.com</IP>
+    </IPing>
+    <IPing>
+        <IP>192.168.0.1</IP>
+    </IPing>
+    <IPing>
+        <IP>192.168.0.2</IP>
+    </IPing>
+    <IPing>
+        <IP>github.com</IP>
+    </IPing>
+    <IPing>
+        <IP>zhangxiaocai.cn</IP>
+    </IPing>
+</IPList>

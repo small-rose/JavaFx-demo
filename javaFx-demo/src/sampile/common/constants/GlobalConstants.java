@@ -28,4 +28,9 @@ public class GlobalConstants {
         public static final String MAIN  = "main/mainView.fxml";
         public static final String IP_CONFIG = "function/IpConfigView.fxml";
     }
+
+
+    public static class FILEPATH {
+        public static final String IP_PING_FILE = "D:\\IPing.xml";
+    }
 }
