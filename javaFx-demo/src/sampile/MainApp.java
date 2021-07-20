@@ -77,14 +77,14 @@ public class MainApp extends Application {
 
     private void initProgressBar(Double  progress) {
         new Thread(()->{
-            for (double initVal = 0 ; initVal < progress ; initVal = initVal + 0.02){
+            for (double initVal = 0 ; initVal < progress ; initVal = initVal + 0.01){
                 if (initVal>=1){
                     loadProgressBar.setProgress(1.00);
                     break;
                 }
                 loadProgressBar.setProgress(initVal);
                 try {
-                    TimeUnit.MILLISECONDS.sleep(200);
+                    TimeUnit.MILLISECONDS.sleep(300);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

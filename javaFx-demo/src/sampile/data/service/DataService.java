@@ -1,5 +1,6 @@
 package sampile.data.service;
 
+import config.Config;
 import sampile.MainApp;
 import sampile.data.model.IPListWrapper;
 import sampile.data.model.IPing;
@@ -8,6 +9,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.prefs.Preferences;
@@ -21,15 +23,16 @@ import java.util.prefs.Preferences;
  */
 public class DataService {
 
-    public List<IPing> getIpList() {
-        return ipList;
-    }
-
-    public void setIpList(List<IPing> ipList) {
-        this.ipList = ipList;
-    }
 
     private  List<IPing> ipList = new ArrayList<>();
+
+    private String ipFilePath ;
+
+    public DataService(){
+        URL xmlpath = Config.class.getClassLoader().getResource("config/IPing.xml");
+        ipFilePath = xmlpath.getPath();
+        System.out.println(xmlpath.getPath());
+    }
 
     /**
      * Returns the person file preference, i.e. the file that was last opened.
@@ -45,7 +48,7 @@ public class DataService {
         if (filePath != null) {
             return new File(filePath);
         } else {
-            return null;
+            return new File(ipFilePath);
         }
     }
 
@@ -122,5 +125,22 @@ public class DataService {
                     .showException(e);*/
             e.printStackTrace();
         }
+    }
+
+
+    public String getIpFilePath() {
+        return ipFilePath;
+    }
+
+    public void setIpFilePath(String ipFilePath) {
+        this.ipFilePath = ipFilePath;
+    }
+
+    public List<IPing> getIpList() {
+        return ipList;
+    }
+
+    public void setIpList(List<IPing> ipList) {
+        this.ipList = ipList;
     }
 }

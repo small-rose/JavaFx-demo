@@ -3,6 +3,7 @@ package sampile.function;
 import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.RuntimeUtil;
+import com.sun.xml.internal.ws.util.StringUtils;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -96,13 +97,17 @@ public class IpConfigController implements Initializable {
 
     public void pingButtonOnAction(ActionEvent actionEvent){
 
+        Stage stage = stageManager.getStage(GlobalConstants.WINDOW.IP_CONFIG);
         if (lock){
-            Stage stage = stageManager.getStage(GlobalConstants.WINDOW.IP_CONFIG);
             AlertUtil.alertInfoDialog(stage, "提示","已经在执行了，你不要这么赶时间呀~");
             return;
         }
         pingResultTextArea.setText("");
         String pingIp = ipValueText.getText().trim();
+        if ("".equals(pingIp) || null == pingIp){
+            AlertUtil.alertErrorDialog(stage, "提示","你忘记输入IP或域名了 \uD83D\uDE02");
+            return;
+        }
         Process process = RuntimeUtil.exec("ping " + pingIp);
         InputStream inputStream = process.getInputStream();
 
@@ -156,7 +161,7 @@ public class IpConfigController implements Initializable {
 
     private void saveIpList(String newIp){
         dataService.setIPingFilePath(dataService.getIPingFilePath());
-        dataService.loadIPingFromFile(new File(GlobalConstants.FILEPATH.IP_PING_FILE));
+        dataService.loadIPingFromFile(dataService.getIPingFilePath());
         Collections.reverse(showPingList);
         showPingList.add(newIp);
 
@@ -171,7 +176,7 @@ public class IpConfigController implements Initializable {
 
     private void updateShowList(){
         dataService.setIPingFilePath(dataService.getIPingFilePath());
-        dataService.loadIPingFromFile(new File(GlobalConstants.FILEPATH.IP_PING_FILE));
+        dataService.loadIPingFromFile(dataService.getIPingFilePath());
 
         showPingList.clear();
         dataService.getIpList().stream().forEach((d)->showPingList.add(d.getIP()));

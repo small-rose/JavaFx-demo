@@ -31,8 +31,8 @@ public class AlertUtil {
      */
     public static boolean AlertConfirmDialog(Stage d_stage, String p_header, String p_message){
 
-        //Alert alert = new Alert(Alert.AlertType.CONFIRMATION,  p_message , new ButtonType("取消", ButtonBar.ButtonData.NO),
-        //        new ButtonType("确定", ButtonBar.ButtonData.YES));
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,  p_message , new ButtonType("取消", ButtonBar.ButtonData.NO),
+                new ButtonType("确定", ButtonBar.ButtonData.YES));
         //        按钮部分可以使用预设的也可以像这样自己 new 一个
 
         //        设置窗口的标题
@@ -81,7 +81,7 @@ public class AlertUtil {
      */
     public static void alertErrorDialog(Stage d_stage, String p_header, String p_message){
         final Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-        errorAlert.setTitle("错误信息");
+        errorAlert.setTitle("错误信息 \uD83D\uDE44 ");
         errorAlert.setHeaderText(p_header);
         errorAlert.setContentText(p_message);
         if (d_stage!=null){

@@ -32,16 +32,28 @@
                                        <HBox.margin>
                                           <Insets top="10.0" />
                                        </HBox.margin>
+                                        <styleClass>
+                                            <String fx:value="btn"/>
+                                            <String fx:value="btn-info"/>
+                                        </styleClass>
                                     </Button>
                                     <Button fx:id="ipConfigAllButton" onAction="#ipConfigAllOnAction" mnemonicParsing="false" text="ipconfig all">
                                        <HBox.margin>
                                           <Insets left="10.0" top="10.0" />
                                        </HBox.margin>
+                                        <styleClass>
+                                            <String fx:value="btn"/>
+                                            <String fx:value="btn-success"/>
+                                        </styleClass>
                                     </Button>
                                     <Button fx:id="ipConfigFlushButton" onAction="#ipConfigFlushOnAction" mnemonicParsing="false" text="ipconfig flush dns">
                                        <HBox.margin>
                                           <Insets left="10.0" top="10.0" />
                                        </HBox.margin>
+                                        <styleClass>
+                                            <String fx:value="btn"/>
+                                            <String fx:value="btn-primary"/>
+                                        </styleClass>
                                     </Button>
                                  </children>
                               </HBox>
@@ -70,7 +82,12 @@
                            <children>
                               <Label text="IP或域名" GridPane.columnIndex="1" />
                               <TextField fx:id="ipValueText" GridPane.columnIndex="2" />
-                              <Button fx:id="pingButton" mnemonicParsing="false" onAction="#pingButtonOnAction" text="Ping" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                               <Button fx:id="pingButton" mnemonicParsing="false" onAction="#pingButtonOnAction" text="Ping" GridPane.columnIndex="2" GridPane.rowIndex="1" >
+                                   <styleClass>
+                                       <String fx:value="btn"/>
+                                       <String fx:value="btn-success"/>
+                                   </styleClass>
+                               </Button>
                               <TextArea fx:id="pingResultTextArea" prefHeight="386.0" prefWidth="362.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>

@@ -20,10 +20,6 @@ public class LoadingController extends AbstractStage implements Initializable {
     private ProgressBar loadProgressBar ;
     @FXML
     private Label loadLabel ;
-    @FXML
-    private ImageView loadingImageView;
-    @FXML
-    private Button startButton;
 
     private Stage mainStage ;
 
