@@ -27,6 +27,7 @@ public class GlobalConstants {
         public static final String LOADING = "loading.fxml";
         public static final String MAIN  = "main/mainView.fxml";
         public static final String IP_CONFIG = "function/IpConfigView.fxml";
+        public static final String FORMAT_TOOL = "function/FormatView.fxml";
     }
 
 

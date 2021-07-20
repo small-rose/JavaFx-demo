@@ -1,38 +1,27 @@
 package sampile.main;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
-
-
 import sampile.MainApp;
 import sampile.StageManager;
 import sampile.common.AbstractStage;
 import sampile.common.constants.GlobalConstants;
-import sun.security.krb5.internal.PAData;
+import sampile.common.utils.AlertUtil;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ListIterator;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Predicate;
 
 /**
  * @description: TODO 功能角色说明：
@@ -48,10 +37,9 @@ public class MainController extends AbstractStage implements Initializable {
     private MenuBar myMenuBar ;
     @FXML
     private MenuItem ipConfigMenuItem;
+
     @FXML
-    private MenuItem xmlFormatMenuItem;
-    @FXML
-    private MenuItem jsonFormatMenuItem;
+    private MenuItem formatMenuItem;
 
     @FXML
     private MenuItem mysqlMenuItem;
@@ -59,7 +47,6 @@ public class MainController extends AbstractStage implements Initializable {
     @FXML
     private MenuItem aboutMenuItem;
 
-    private Stage loadState ;
 
     private Stage mainStage ;
 
@@ -68,7 +55,34 @@ public class MainController extends AbstractStage implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        mainStage = stageManager.getStage(GlobalConstants.WINDOW.MAIN);
         System.out.println("MainController ... initialize ");
+
+        if (funcStage == null ) {
+            funcStage = new Stage();
+            funcStage.setTitle("IpConfig");
+            AnchorPane anchorPane = null;
+            try {
+                anchorPane = FXMLLoader.load(MainApp.class.getResource("function/IpConfigView.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            funcStage.setScene(new Scene(anchorPane, 850, 520));
+            funcStage.getIcons().addAll(GlobalConstants.LOGO_IMAGE);
+            funcStage.initStyle(StageStyle.DECORATED);
+            funcStage.setFullScreen(false);
+            funcStage.setMinWidth(200);
+            funcStage.setMinHeight(100);
+            funcStage.setMaxHeight(722);
+            funcStage.setMaxWidth(837);
+            funcStage.setMaximized(false);
+            funcStage.setResizable(false);
+            funcStage.getScene().getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+            funcStage.setOnCloseRequest(event -> funcStage.hide());
+            stageManager.addStage(GlobalConstants.WINDOW.IP_CONFIG, funcStage);
+        }
+
+        initMenuItems();
 
         ListIterator<Menu> menuListIterator = myMenuBar.getMenus().listIterator();
         while (menuListIterator.hasNext()){
@@ -84,8 +98,8 @@ public class MainController extends AbstractStage implements Initializable {
                         if ("ipConfigMenuItem".equals(menuItem.getId())){
                             ipConfigOnAction(event);
                         }
-                        if ("xmlFormatMenuItem".equals(menuItem.getId())){
-                            xmlFormatOnAction(event);
+                        if ("formatMenuItem".equals(menuItem.getId())){
+                            formatMenuItemOnAction(event);
                         }
                         if ("aboutMenuItem".equals(menuItem.getId())){
                             aboutOnAction(event);
@@ -96,44 +110,46 @@ public class MainController extends AbstractStage implements Initializable {
         }
     }
 
+    private void initMenuItems() {
+        //ImageView imageView = new ImageView("file:/images/icon/gur-project/gur-project-01.png");
+        //System.out.println(imageView);
+        //ipConfigMenuItem.setGraphic(imageView);
+    }
+
 
     public void ipConfigOnAction(ActionEvent actionEvent) {
 
+        funcStage.show();
+        //funcStage.setOnCloseRequest(event -> funcStage.hide());
+    }
+
+    public void formatMenuItemOnAction(ActionEvent actionEvent) {
+        funcStage = stageManager.getStage(GlobalConstants.WINDOW.FORMAT_TOOL);
         if (funcStage == null ) {
-            System.out.println(" funcStage is null ");
-            funcStage = stageManager.getStage(GlobalConstants.WINDOW.IP_CONFIG);
-            //funcStage = new Stage();
-            funcStage.setTitle("IpConfig");
-            funcStage.getIcons().addAll(GlobalConstants.LOGO_IMAGE);
+            funcStage = new Stage();
+            funcStage.setTitle("格式化工具");
+            AnchorPane anchorPane = null;
+            try {
+                anchorPane = FXMLLoader.load(MainApp.class.getResource(GlobalConstants.WINDOW.FORMAT_TOOL));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            funcStage.setScene(new Scene(anchorPane, 850, 520));
             funcStage.initStyle(StageStyle.DECORATED);
+            funcStage.getIcons().addAll(GlobalConstants.LOGO_IMAGE);
             funcStage.setFullScreen(false);
             funcStage.setMinWidth(200);
             funcStage.setMinHeight(100);
-            funcStage.setMaxHeight(722);
-            funcStage.setMaxWidth(837);
-            funcStage.setMaximized(false);
-            funcStage.setResizable(false);
             funcStage.getScene().getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+            stageManager.addStage(GlobalConstants.WINDOW.FORMAT_TOOL, funcStage);
         }
         funcStage.show();
 
-        funcStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-
-                funcStage.hide();
-
-            }
-        });
-    }
-
-    public void xmlFormatOnAction(ActionEvent actionEvent) {
-
+        funcStage.setOnCloseRequest(event -> funcStage.hide());
     }
 
     public void aboutOnAction(ActionEvent actionEvent) {
-        Stage stage = stageManager.getStage(GlobalConstants.WINDOW.MAIN);
-
+        AlertUtil.alertInfoDialog(mainStage, " 提示", "功能正在开发中");
     }
 
 }

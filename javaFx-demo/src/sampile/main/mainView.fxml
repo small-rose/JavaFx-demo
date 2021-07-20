@@ -14,9 +14,9 @@ fx:controller="sampile.main.MainController">
         <menus>
           <Menu mnemonicParsing="false" text="工具">
             <items>
-              <MenuItem id="ipConfigMenuItem" mnemonicParsing="false" onAction="#ipConfigOnAction" text="ipconfig" />
-                  <MenuItem id="xmlFormatMenuItem" mnemonicParsing="false" text="Xml格式化" />
-                  <MenuItem id="jsonFormatMenuItem" mnemonicParsing="false" text="Json格式化" />
+              <MenuItem fx:id="ipConfigMenuItem" mnemonicParsing="false" onAction="#ipConfigOnAction" text="ipconfig" />
+                  <MenuItem fx:id="formatMenuItem" mnemonicParsing="false"  onAction="#formatMenuItemOnAction" text="格式化" />
+                  <MenuItem fx:id="noteMenuItem" mnemonicParsing="false" text="记录器" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="数据库">

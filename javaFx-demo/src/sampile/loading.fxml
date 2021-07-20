@@ -19,7 +19,7 @@
             </ImageView>
             <Label fx:id="loadLabel" layoutX="-3.0" layoutY="365.0" prefHeight="74.0" prefWidth="600.0" text="启动中...">
                <padding>
-                  <Insets left="10.0" />
+                  <Insets left="20.0" top="5.0" />
                </padding>
                <textFill>
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
