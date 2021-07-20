@@ -150,53 +150,52 @@ public class IpConfigController implements Initializable {
                         ex.printStackTrace();
                     }
                 }
-
-                Platform.runLater(()->saveIpList(pingIp));
-                Platform.runLater(()->updateShowList());
-
             }
-
         });
+
+        Platform.runLater(()->saveIpList(pingIp));
     }
 
     private void saveIpList(String newIp){
         dataService.setIPingFilePath(dataService.getIPingFilePath());
         dataService.loadIPingFromFile(dataService.getIPingFilePath());
-        Collections.reverse(showPingList);
-        showPingList.add(newIp);
 
+        if (!"".equals(newIp)){
+            Collections.reverse(showPingList);
+            showPingList.add(newIp);
 
-        dataList.clear();
-        showPingList.stream().distinct().forEach((s) -> dataList.add(new IPing(s)));
+            dataList.clear();
+            showPingList.stream().distinct().forEach((s) -> dataList.add(new IPing(s)));
 
-        dataService.setIpList(dataList);
-        dataService.savePingIpDataToFile(dataService.getIPingFilePath());
+            dataService.setIpList(dataList);
+            dataService.savePingIpDataToFile(dataService.getIPingFilePath());
+        }
+        updateShowList();
     }
 
 
     private void updateShowList(){
-        dataService.setIPingFilePath(dataService.getIPingFilePath());
-        dataService.loadIPingFromFile(dataService.getIPingFilePath());
 
         showPingList.clear();
         dataService.getIpList().stream().forEach((d)->showPingList.add(d.getIP()));
         Collections.reverse(showPingList);
         // 把清单对象转换为JavaFX控件能够识别的数据对象
         ObservableList<String> obList = FXCollections.observableArrayList(showPingList);
-        ipListHistory.setItems(obList); // 依据指定数据创建列表视图
+        // 依据指定数据更新列表视图
+        ipListHistory.setItems(obList);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         dataService = new DataService();
 
-        updateShowList();
+        saveIpList("");
 
         ipListHistory.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> arg0, String old_str, String new_str) {
                 // getSelectedIndex方法可获得选中项的序号，getSelectedItem方法可获得选中项的对象
-                String desc = String.format("您点了第%d项，快餐名称是%s",
+                String desc = String.format("您点了第%d项，IP是%s",
                         ipListHistory.getSelectionModel().getSelectedIndex(),
                         ipListHistory.getSelectionModel().getSelectedItem().toString());
                 System.out.println(" desc : " +desc);
