@@ -2,6 +2,11 @@ package sampile;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,7 +40,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        this.primaryStage = primaryStage ;
+        this.primaryStage = primaryStage;
 
         System.out.println("开始初始化 load fxml");
         initLoading();
@@ -45,61 +50,79 @@ public class MainApp extends Application {
         System.out.println("开始初始化 mainView fxml");
         initMainWin(GlobalConstants.WINDOW.MAIN);
 
-        initProgressBar(100);
-        // 核心代码
-        new Thread(() -> {
+        //给进度条设置初始值
+        //loadProgressBar.setProgress(0.0);
+        initLabel.setText("TEST");
+        //获取Task任务(也就是主逻辑方法)
+        Task<Integer> myTask  = new Task<Integer>() {
+            @Override
+            protected Integer call() throws Exception {
+                System.out.println(" thread : " + Thread.currentThread().getName());
+                for (int initVal = 9; initVal < 101; initVal = initVal + 1) {
+                    updateProgress(initVal, 100);
+                    switch (initVal) {
+                        case 20:
+                            updateMessage("正在启动中...");
+                            break;
+                        case 40:
+                            updateMessage("正在初始化目录...");
+                            break;
+                        case 60:
+                            updateMessage("正在准备工作空间...");
+                            break;
+                        case 100:
+                            updateMessage("加载完成");
+                    }
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
-
-            Platform.runLater(() -> {// 2
-                System.out.println(" --- Thread Name  runlater= " + Thread.currentThread().getName());
-                //initProgressBar(100);
-                try {
-                    final Stage mainStage =  stageManager.getStage(GlobalConstants.WINDOW.MAIN);
-                    mainStage.addEventHandler(WindowEvent.WINDOW_SHOWN, event -> {
-                        //primaryStage.hide();
-                    });
-
-                    //mainStage.show();
-                } catch (Throwable e) {
-                    e.printStackTrace();// 3
                 }
-            });
-        }).start();
-    }
 
-    private void initProgressBar(int  progress) {
-
-        System.out.println(" --- (initProgressBar) Thread Name = " + Thread.currentThread().getName());
-        new Thread(()-> {
-            for (int initVal = 1; initVal < progress; initVal = initVal + 1) {
-                if (initVal >= 100) {
-                    showProgress(1.00);
-                    break;
-                }
-                loadProgressBar.setProgress(initVal/100);
-                System.out.println(" initVal = " + initVal);
-                //showProgress(1/100);
-                switch (initVal) {
-                    case 20:
-                        showInfo("正在启动中...");
-                        break;
-                    case 40:
-                        showInfo("正在初始化目录...");
-                        break;
-                    case 60:
-                        showInfo("正在准备工作空间...");
-                        break;
-                    case 100:
-                        showInfo("加载完成");
-                }
-                try {
-                    TimeUnit.MILLISECONDS.sleep(200);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                return 100;
             }
-        //});
-       }).start();
+        };
+
+        //绑定进度条的值属性
+        loadProgressBar.progressProperty().unbind();
+        loadProgressBar.progressProperty().bind(myTask.progressProperty());
+
+        //绑定TextField的值属性
+        //initLabel.textProperty().unbind();
+        //initLabel.textProperty().bind(myTask.messageProperty());
+
+        //添加Task的监听方法:如果Task的Message变化,则会经过该方法
+        myTask.messageProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                System.out.println(newValue);
+                initLabel.setText(newValue);
+                Platform.runLater(() -> initLabel.setText(newValue));
+            }
+        });
+
+
+        //使用新线程启动 -- 这是重中之重
+        new Thread(myTask).start();
+
+        final Stage mainStage =  stageManager.getStage(GlobalConstants.WINDOW.MAIN);
+
+        loadProgressBar.progressProperty().addListener((observable, oldValue, newValue) -> {
+            //System.out.println(" new val : "+newValue);
+            if (newValue.doubleValue() == 1.00){
+                mainStage.show();
+            }
+        });
+
+        Platform.runLater(()->{
+
+            mainStage.addEventHandler(WindowEvent.WINDOW_SHOWN, event -> {
+                primaryStage.hide();
+            });
+            //mainStage.show();
+        });
 
     }
 
@@ -123,12 +146,12 @@ public class MainApp extends Application {
     private void initLoading() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("loading.fxml"));
         Label loadLabel = (Label) root.lookup("#loadLabel");
-        initLabel = loadLabel ;
+        this.initLabel = loadLabel ;
         ProgressBar progressBar = (ProgressBar) root.lookup("#loadProgressBar");
-        loadProgressBar = progressBar ;
-        primaryStage.setScene(new Scene(root, 600, 375));
-        primaryStage.getIcons().addAll(GlobalConstants.LOGO_IMAGE);
-        primaryStage.initStyle(StageStyle.UNDECORATED);//设定窗口无边框
+        this.loadProgressBar = progressBar ;
+        this.primaryStage.setScene(new Scene(root, 600, 375));
+        this.primaryStage.getIcons().addAll(GlobalConstants.LOGO_IMAGE);
+        this.primaryStage.initStyle(StageStyle.UNDECORATED);//设定窗口无边框
 
     }
 

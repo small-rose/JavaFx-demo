@@ -140,6 +140,7 @@ public class MainController extends AbstractStage implements Initializable {
             funcStage.setFullScreen(false);
             funcStage.setMinWidth(200);
             funcStage.setMinHeight(100);
+            funcStage.setMaximized(true);
             funcStage.getScene().getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
             stageManager.addStage(GlobalConstants.WINDOW.FORMAT_TOOL, funcStage);
         }
