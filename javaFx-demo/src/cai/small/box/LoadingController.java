@@ -98,8 +98,9 @@ public class LoadingController extends Application {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 System.out.println(newValue);
-                loadLabel.setText(newValue);
-                Platform.runLater(() -> loadLabel.setText(newValue));
+                // TODO  标签字体没有反应
+                //loadLabel.setText(newValue);
+                //Platform.runLater(() -> loadLabel.setText(newValue));
             }
         });
 
