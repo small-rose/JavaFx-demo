@@ -178,16 +178,25 @@ public class IpConfigController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         dataService = new DataService();
 
-        saveIpList("");
+        dataService.setIPingFilePath(dataService.getIPingFilePath());
+        dataService.loadIPingFromFile(dataService.getIPingFilePath());
+
+        showPingList.clear();
+        dataService.getIpList().stream().forEach((d)->showPingList.add(d.getIP()));
+        Collections.reverse(showPingList);
+        // 把清单对象转换为JavaFX控件能够识别的数据对象
+        ObservableList<String> obList = FXCollections.observableArrayList(showPingList);
+        // 依据指定数据更新列表视图
+        ipListHistory.setItems(obList);
 
         ipListHistory.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> arg0, String old_str, String new_str) {
                 // getSelectedIndex方法可获得选中项的序号，getSelectedItem方法可获得选中项的对象
-                String desc = String.format("您点了第%d项，IP是%s",
-                        ipListHistory.getSelectionModel().getSelectedIndex(),
-                        ipListHistory.getSelectionModel().getSelectedItem().toString());
-                System.out.println(" desc : " +desc);
+                //String desc = String.format("您点了第%d项，IP是%s",
+                //        ipListHistory.getSelectionModel().getSelectedIndex(),
+                //       ipListHistory.getSelectionModel().getSelectedItem().toString());
+                //System.out.println(" desc : " +desc);
                 ipValueText.setText(ipListHistory.getSelectionModel().getSelectedItem().toString()); // 在标签上显示当前选中的文本项
             }
         });

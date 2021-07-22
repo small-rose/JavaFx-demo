@@ -24,4 +24,12 @@ public class IPing {
     public void setIP(String IP) {
         this.IP = IP;
     }
+
+
+    @Override
+    public String toString() {
+        return "IPing{" +
+                "IP='" + IP + '\'' +
+                '}';
+    }
 }

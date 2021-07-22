@@ -56,34 +56,7 @@ public class MainController extends AbstractStage implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        mainStage = stageManager.getStage(GlobalConstants.WINDOW.MAIN);
-        System.out.println("MainController ... initialize ");
 
-        if (funcStage == null ) {
-            funcStage = new Stage();
-            funcStage.setTitle("IpConfig");
-            AnchorPane anchorPane = null;
-            try {
-                anchorPane = FXMLLoader.load(MainApp.class.getResource(GlobalConstants.WINDOW.IP_CONFIG));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            funcStage.setScene(new Scene(anchorPane, 850, 520));
-            funcStage.getIcons().addAll(GlobalConstants.LOGO_IMAGE);
-            funcStage.initStyle(StageStyle.DECORATED);
-            funcStage.setFullScreen(false);
-            funcStage.setMinWidth(200);
-            funcStage.setMinHeight(100);
-            funcStage.setMaxHeight(722);
-            funcStage.setMaxWidth(837);
-            funcStage.setMaximized(false);
-            funcStage.setResizable(false);
-            funcStage.getScene().getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
-            funcStage.setOnCloseRequest(event -> funcStage.hide());
-            stageManager.addStage(GlobalConstants.WINDOW.IP_CONFIG, funcStage);
-        }
-
-        initMenuItems();
 
         ListIterator<Menu> menuListIterator = myMenuBar.getMenus().listIterator();
         while (menuListIterator.hasNext()){
@@ -111,14 +84,33 @@ public class MainController extends AbstractStage implements Initializable {
         }
     }
 
-    private void initMenuItems() {
-        //ImageView imageView = new ImageView("file:/images/icon/gur-project/gur-project-01.png");
-        //System.out.println(imageView);
-        //ipConfigMenuItem.setGraphic(imageView);
-    }
-
-
     public void ipConfigOnAction(ActionEvent actionEvent) {
+        mainStage = stageManager.getStage(GlobalConstants.WINDOW.MAIN);
+        System.out.println("MainController ... initialize ");
+
+        if (funcStage == null ) {
+            funcStage = new Stage();
+            funcStage.setTitle("IpConfig");
+            AnchorPane anchorPane = null;
+            try {
+                anchorPane = FXMLLoader.load(MainApp.class.getResource(GlobalConstants.WINDOW.IP_CONFIG));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            funcStage.setScene(new Scene(anchorPane, 850, 520));
+            funcStage.getIcons().addAll(GlobalConstants.LOGO_IMAGE);
+            funcStage.initStyle(StageStyle.DECORATED);
+            funcStage.setFullScreen(false);
+            funcStage.setMinWidth(200);
+            funcStage.setMinHeight(100);
+            funcStage.setMaxHeight(722);
+            funcStage.setMaxWidth(837);
+            funcStage.setMaximized(false);
+            funcStage.setResizable(false);
+            funcStage.getScene().getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+            funcStage.setOnCloseRequest(event -> funcStage.hide());
+            stageManager.addStage(GlobalConstants.WINDOW.IP_CONFIG, funcStage);
+        }
 
         funcStage.show();
         //funcStage.setOnCloseRequest(event -> funcStage.hide());

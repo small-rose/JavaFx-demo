@@ -7,6 +7,8 @@
 
 <AnchorPane prefHeight="722.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cai.small.box.function.IpConfigController">
    <children>
+       <StackPane fx:id="containerPane" prefHeight="594.0" prefWidth="868.0" AnchorPane.bottomAnchor="0.0"
+                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
       <TabPane tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="查本机IP">
