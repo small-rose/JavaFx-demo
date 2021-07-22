@@ -3,16 +3,13 @@ package cai.small.box;
 import cai.small.box.common.constants.GlobalConstants;
 import cai.small.box.common.core.MySystemTray;
 import cai.small.box.common.core.StageManager;
-import cai.small.box.common.utils.AlertUtil;
 import javafx.application.Application;
 import javafx.application.Platform;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -24,8 +21,6 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 public class LoadingController extends Application {
@@ -98,8 +93,8 @@ public class LoadingController extends Application {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 System.out.println(newValue);
-                loadLabel.setText(newValue);
-                Platform.runLater(() -> loadLabel.setText(newValue));
+                //loadLabel.setText(newValue);
+                //Platform.runLater(() -> loadLabel.setText(newValue));
             }
         });
 
