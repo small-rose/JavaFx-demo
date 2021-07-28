@@ -3,23 +3,11 @@ package cai.small.box.common.core;
 import cai.small.box.common.constants.GlobalConstants;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-import org.apache.log4j.Logger;
 
-
-import java.awt.Image;
-import java.awt.MenuItem;
-import java.awt.PopupMenu;
-import java.awt.SystemTray;
-import java.awt.Toolkit;
-import java.awt.TrayIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.net.URL;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.URL;
 
@@ -32,7 +20,9 @@ import java.net.URL;
  * @Date ：2021/7/22 12:24
  * @Version ： 1.0
  **/
-public class MySystemTray {
+public class MySystemTray extends AbstractLog{
+
+
 
     private static MySystemTray instance;
 
@@ -42,7 +32,7 @@ public class MySystemTray {
     private static ActionListener showListener;
     private static ActionListener exitListener;
     private static MouseListener mouseListener;
-    private Logger logger = Logger.getLogger(MySystemTray.class);
+
 
     static{
         //执行stage.close()方法,窗口不直接退出
