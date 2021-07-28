@@ -19,6 +19,7 @@ import javafx.stage.StageStyle;
 import cai.small.box.common.constants.GlobalConstants;
 import cai.small.box.common.utils.AlertUtil;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ListIterator;
@@ -74,10 +75,10 @@ public class MainController extends AbstractStage implements Initializable {
             funcStage.setFullScreen(false);
             funcStage.setMinWidth(200);
             funcStage.setMinHeight(100);
-            funcStage.setMaxHeight(722);
-            funcStage.setMaxWidth(837);
-            funcStage.setMaximized(false);
-            funcStage.setResizable(false);
+            //funcStage.setMaxHeight(722);
+            //funcStage.setMaxWidth(837);
+            //funcStage.setMaximized(false);
+            //funcStage.setResizable(false);
             funcStage.getScene().getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
             funcStage.setOnCloseRequest(event -> funcStage.hide());
             stageManager.addStage(GlobalConstants.WINDOW.IP_CONFIG, funcStage);
@@ -119,7 +120,7 @@ public class MainController extends AbstractStage implements Initializable {
 
 
     public void ipConfigOnAction(ActionEvent actionEvent) {
-
+        funcStage = stageManager.getStage(GlobalConstants.WINDOW.IP_CONFIG);
         funcStage.show();
         //funcStage.setOnCloseRequest(event -> funcStage.hide());
     }
@@ -139,10 +140,11 @@ public class MainController extends AbstractStage implements Initializable {
             funcStage.initStyle(StageStyle.DECORATED);
             funcStage.getIcons().addAll(GlobalConstants.LOGO_IMAGE);
             funcStage.setFullScreen(false);
-            funcStage.setMinWidth(200);
-            funcStage.setMinHeight(100);
-            funcStage.setMaximized(false);
-            funcStage.setResizable(false);
+            funcStage.setMinWidth(600);
+            funcStage.setMinHeight(400);
+            funcStage.setMaxWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+            funcStage.setMaxHeight(Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+            //funcStage.setResizable(false);
             funcStage.getScene().getStylesheets().add(GlobalConstants.CSS.BOOTSTRAP_FX);
             stageManager.addStage(GlobalConstants.WINDOW.FORMAT_TOOL, funcStage);
         }

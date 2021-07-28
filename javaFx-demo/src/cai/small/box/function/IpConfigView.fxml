@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="722.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cai.small.box.function.IpConfigController">
    <children>
-      <TabPane tabClosingPolicy="UNAVAILABLE">
+      <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="查本机IP">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="722.0" prefWidth="837.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="722.0" prefWidth="837.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <GridPane layoutX="-5.0" layoutY="14.0" prefHeight="622.0" prefWidth="856.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="78.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="585.0" minWidth="10.0" prefWidth="477.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="425.0" minWidth="10.0" prefWidth="273.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="585.0" minWidth="10.0" prefWidth="545.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="425.0" minWidth="10.0" prefWidth="223.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="495.0" minHeight="10.0" prefHeight="392.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="224.0" minHeight="10.0" prefHeight="187.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="500.0" minHeight="10.0" prefHeight="434.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="224.0" minHeight="10.0" prefHeight="136.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextArea fx:id="ipConfigTextArea" prefHeight="382.0" prefWidth="325.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextArea fx:id="ipConfigTextArea" prefHeight="432.0" prefWidth="593.0" style="-fx-max-width: 1900;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                  <children>
                                     <Button fx:id="ipConfigButton" mnemonicParsing="false" onAction="#ipConfigOnAction" text="ipconfig">
@@ -33,26 +33,26 @@
                                           <Insets top="10.0" />
                                        </HBox.margin>
                                         <styleClass>
-                                            <String fx:value="btn"/>
-                                            <String fx:value="btn-info"/>
+                                            <String fx:value="btn" />
+                                            <String fx:value="btn-info" />
                                         </styleClass>
                                     </Button>
-                                    <Button fx:id="ipConfigAllButton" onAction="#ipConfigAllOnAction" mnemonicParsing="false" text="ipconfig all">
+                                    <Button fx:id="ipConfigAllButton" mnemonicParsing="false" onAction="#ipConfigAllOnAction" text="ipconfig all">
                                        <HBox.margin>
                                           <Insets left="10.0" top="10.0" />
                                        </HBox.margin>
                                         <styleClass>
-                                            <String fx:value="btn"/>
-                                            <String fx:value="btn-success"/>
+                                            <String fx:value="btn" />
+                                            <String fx:value="btn-success" />
                                         </styleClass>
                                     </Button>
-                                    <Button fx:id="ipConfigFlushButton" onAction="#ipConfigFlushOnAction" mnemonicParsing="false" text="ipconfig flush dns">
+                                    <Button fx:id="ipConfigFlushButton" mnemonicParsing="false" onAction="#ipConfigFlushOnAction" text="ipconfig flush dns">
                                        <HBox.margin>
                                           <Insets left="10.0" top="10.0" />
                                        </HBox.margin>
                                         <styleClass>
-                                            <String fx:value="btn"/>
-                                            <String fx:value="btn-primary"/>
+                                            <String fx:value="btn" />
+                                            <String fx:value="btn-primary" />
                                         </styleClass>
                                     </Button>
                                  </children>
@@ -65,35 +65,35 @@
           </Tab>
           <Tab text="Ping地址">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <GridPane layoutY="22.0" prefHeight="701.0" prefWidth="500.0">
+                        <GridPane layoutY="22.0" prefHeight="701.0" prefWidth="508.0">
                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="335.0" minWidth="10.0" prefWidth="13.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="335.0" minWidth="10.0" prefWidth="82.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="10.0" prefWidth="381.0" />
+                              <ColumnConstraints hgrow="ALWAYS" maxWidth="335.0" minWidth="10.0" prefWidth="13.0" />
+                            <ColumnConstraints hgrow="ALWAYS" maxWidth="335.0" minWidth="10.0" prefWidth="82.0" />
+                            <ColumnConstraints hgrow="ALWAYS" maxWidth="640.0" minWidth="10.0" prefWidth="381.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="89.0" minHeight="-Infinity" prefHeight="29.0" valignment="BASELINE" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="565.0" minHeight="10.0" prefHeight="386.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="481.0" minHeight="10.0" prefHeight="251.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="41.0" vgrow="ALWAYS" />
+                            <RowConstraints maxHeight="89.0" minHeight="-Infinity" prefHeight="35.0" valignment="BASELINE" vgrow="ALWAYS" />
+                            <RowConstraints maxHeight="565.0" minHeight="10.0" prefHeight="463.0" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="481.0" minHeight="10.0" prefHeight="162.0" vgrow="ALWAYS" />
                           </rowConstraints>
                            <children>
                               <Label text="IP或域名" GridPane.columnIndex="1" />
                               <TextField fx:id="ipValueText" GridPane.columnIndex="2" />
-                               <Button fx:id="pingButton" mnemonicParsing="false" onAction="#pingButtonOnAction" text="Ping" GridPane.columnIndex="2" GridPane.rowIndex="1" >
+                               <Button fx:id="pingButton" mnemonicParsing="false" onAction="#pingButtonOnAction" text="Ping" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                    <styleClass>
-                                       <String fx:value="btn"/>
-                                       <String fx:value="btn-success"/>
+                                       <String fx:value="btn" />
+                                       <String fx:value="btn-success" />
                                    </styleClass>
                                </Button>
-                              <TextArea fx:id="pingResultTextArea" prefHeight="386.0" prefWidth="362.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <TextArea fx:id="pingResultTextArea" prefHeight="470.0" prefWidth="389.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
-                        <TitledPane layoutX="509.0" layoutY="17.0" prefHeight="456.0" prefWidth="174.0" text="历史记录">
+                        <TitledPane layoutX="557.0" layoutY="25.0" prefHeight="422.0" prefWidth="209.0" text="历史记录">
                            <content>
-                              <ListView fx:id="ipListHistory" prefHeight="229.0" prefWidth="200.0" />
+                              <ListView fx:id="ipListHistory" prefHeight="443.0" prefWidth="207.0" />
                            </content>
                         </TitledPane>
                      </children>

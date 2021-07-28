@@ -21,28 +21,37 @@ import java.io.IOException;
  */
 public class FormatViewController {
 
-    private StageManager stageManager = StageManager.getInstance();
+    private static StageManager stageManager = StageManager.getInstance();
 
     @FXML
     private TextArea xmlSourceText;
     @FXML
     private TextArea  xmlTargetText;
 
+    private static Stage stage ;
 
+    static {
+        stage = stageManager.getStage(GlobalConstants.WINDOW.FORMAT_TOOL);
+    }
+
+    /**
+     * xml 格式化
+     * @param actionEvent
+     */
     public void xmlFormatOnAction(ActionEvent actionEvent){
 
-        Stage stage = stageManager.getStage(GlobalConstants.WINDOW.FORMAT_TOOL);
-
         String sourceText = xmlSourceText.getText();
-
+        if ("".equals(sourceText.trim())){
+            AlertUtil.alertInfoDialog(stage, "提示", "XML是空的，请帖入XML");
+            return;
+        }
         String targetText = null;
         try {
             targetText = XmlFormatTool.prettyFormat(sourceText);
         } catch (DocumentException e) {
             e.printStackTrace();
-
             AlertUtil.alertErrorDialog(stage, "错误", "XML文档格式错误,检查后再格式化");
-
+            return;
         } catch (IOException e) {
             e.printStackTrace();
             AlertUtil.alertErrorDialog(stage, "错误", e.getMessage());
@@ -52,4 +61,61 @@ public class FormatViewController {
         xmlTargetText.setText(targetText);
 
     }
+
+    /**
+     * xml 压缩
+     * @param actionEvent
+     */
+    public void xmlCompactOnAction(ActionEvent actionEvent){
+
+        String sourceText = xmlSourceText.getText();
+        if ("".equals(sourceText.trim())){
+            AlertUtil.alertInfoDialog(stage, "提示", "XML是空的，请帖入XML");
+            return;
+        }
+        String targetText = null;
+        try {
+            targetText = XmlFormatTool.createCompactFormat(sourceText);
+        } catch (DocumentException e) {
+            e.printStackTrace();
+            AlertUtil.alertErrorDialog(stage, "错误", "XML文档格式错误,检查后再格式化");
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            AlertUtil.alertErrorDialog(stage, "错误", e.getMessage());
+        }
+
+        xmlTargetText.setText("");
+        xmlTargetText.setText(targetText);
+    }
+
+
+    /**
+     * json 格式化
+     * @param actionEvent
+     */
+    public void jsonFormatOnAction(ActionEvent actionEvent){
+
+        String sourceText = xmlSourceText.getText();
+        if ("".equals(sourceText.trim())){
+            AlertUtil.alertInfoDialog(stage, "提示", "XML是空的，请帖入XML");
+            return;
+        }
+        String targetText = null;
+        try {
+            targetText = XmlFormatTool.prettyFormat(sourceText);
+        } catch (DocumentException e) {
+            e.printStackTrace();
+            AlertUtil.alertErrorDialog(stage, "错误", "XML文档格式错误,检查后再格式化");
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            AlertUtil.alertErrorDialog(stage, "错误", e.getMessage());
+        }
+
+        xmlTargetText.setText("");
+        xmlTargetText.setText(targetText);
+
+    }
+
 }
