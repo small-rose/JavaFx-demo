@@ -6,7 +6,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import com.sun.javafx.scene.control.skin.ContextMenuContent.ArrowMenuItem?>
 <?import javafx.collections.FXCollections?>
 <AnchorPane prefHeight="722.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cai.small.box.function.FormatViewController">
    <children>
