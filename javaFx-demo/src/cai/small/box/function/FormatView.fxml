@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.collections.FXCollections?>
+
 <AnchorPane prefHeight="722.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cai.small.box.function.FormatViewController">
    <children>
       <TabPane prefHeight="730.0" prefWidth="843.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -17,25 +18,35 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="672.0" prefWidth="511.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <TextArea layoutX="49.0" layoutY="87.0" prefHeight="412.0" prefWidth="296.0" AnchorPane.bottomAnchor="50" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="55" fx:id="xmlSourceText" />
-                              <Button layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#xmlFormatOnAction" text="格式化" />
-                              <Button layoutX="300.0" layoutY="14.0" mnemonicParsing="false" onAction="#xmlCompactOnAction" prefHeight="30.0" prefWidth="67.0" text="压缩" />
-                              <ChoiceBox layoutX="170.0" layoutY="14.0" prefHeight="30.0" prefWidth="70.0" >
+                              <TextArea layoutX="49.0" layoutY="87.0" prefHeight="412.0" prefWidth="296.0" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="55" fx:id="xmlSourceText" />
+                              <Button layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#xmlFormatOnAction" text="格式化">
+                                   <styleClass>
+                                       <String fx:value="btn" />
+                                       <String fx:value="btn-info" />
+                                   </styleClass>
+                               </Button>
+                              <Button layoutX="300.0" layoutY="14.0" mnemonicParsing="false" onAction="#xmlCompactOnAction" prefHeight="30.0" prefWidth="67.0" text="压缩" >
+                                  <styleClass>
+                                      <String fx:value="btn" />
+                                      <String fx:value="btn-info" />
+                                  </styleClass>
+                              </Button>
+                              <ChoiceBox fx:id="choiceBoxFormat" layoutX="170.0" layoutY="14.0" prefHeight="30.0" prefWidth="70.0" value="4">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
                                         <String fx:value="2" />
                                         <String fx:value="4" />
                                         <String fx:value="8" />
-                                        <String fx:value="\t" />
+                                        <String fx:value="Tab" />
                                     </FXCollections>
                                 </items>
                               </ChoiceBox>
-                              <Label layoutX="99.0" layoutY="19.0" text="缩进空格" />
+                              <Label layoutX="106.0" layoutY="19.0" text="缩进空格" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <TextArea layoutX="20.0" layoutY="79.0" prefHeight="422.0" prefWidth="363.0" AnchorPane.bottomAnchor="50" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="55" VBox.vgrow="ALWAYS" fx:id="xmlTargetText" />
+                              <TextArea layoutX="20.0" layoutY="79.0" prefHeight="422.0" prefWidth="363.0" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="55" VBox.vgrow="ALWAYS" fx:id="xmlTargetText" />
                            </children>
                         </AnchorPane>
                     </items>
@@ -49,10 +60,20 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
                               <TextArea prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
-                              <Button layoutX="20.0" layoutY="14.0" mnemonicParsing="false" text="格式化" />
-                              <Label layoutX="98.0" layoutY="19.0" text="缩进空格" />
+                              <Button layoutX="20.0" layoutY="14.0" mnemonicParsing="false" text="格式化">
+                               <styleClass>
+                                   <String fx:value="btn" />
+                                   <String fx:value="btn-info" />
+                               </styleClass>
+                              </Button>
+                              <Label layoutX="106.0" layoutY="19.0" text="缩进空格" />
                               <ChoiceBox layoutX="170.0" layoutY="14.0" prefHeight="30.0" prefWidth="70.0" />
-                              <Button layoutX="300.0" layoutY="14.0" mnemonicParsing="false" text="压缩呀" />
+                              <Button layoutX="300.0" layoutY="14.0" mnemonicParsing="false" text="压缩" >
+                               <styleClass>
+                                   <String fx:value="btn" />
+                                   <String fx:value="btn-info" />
+                               </styleClass>
+                              </Button>
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">

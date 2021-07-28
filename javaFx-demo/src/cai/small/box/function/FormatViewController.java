@@ -1,6 +1,7 @@
 package cai.small.box.function;
 
 import cai.small.box.common.core.StageManager;
+import cai.small.box.common.tools.JsonFormatTool;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -98,24 +99,28 @@ public class FormatViewController {
 
         String sourceText = xmlSourceText.getText();
         if ("".equals(sourceText.trim())){
-            AlertUtil.alertInfoDialog(stage, "提示", "XML是空的，请帖入XML");
+            AlertUtil.alertInfoDialog(stage, "提示", "Json是空的，请帖入你的Json字符串");
             return;
         }
-        String targetText = null;
-        try {
-            targetText = XmlFormatTool.prettyFormat(sourceText);
-        } catch (DocumentException e) {
-            e.printStackTrace();
-            AlertUtil.alertErrorDialog(stage, "错误", "XML文档格式错误,检查后再格式化");
-            return;
-        } catch (IOException e) {
-            e.printStackTrace();
-            AlertUtil.alertErrorDialog(stage, "错误", e.getMessage());
-        }
-
+        String targetText = JsonFormatTool.prettyFormat(sourceText);
         xmlTargetText.setText("");
         xmlTargetText.setText(targetText);
-
     }
 
+
+    /**
+     * json 压缩
+     * @param actionEvent
+     */
+    public void jsonCompactOnAction(ActionEvent actionEvent){
+
+        String sourceText = xmlSourceText.getText();
+        if ("".equals(sourceText.trim())){
+            AlertUtil.alertInfoDialog(stage, "提示", "Json是空的，请帖入你的Json字符串");
+            return;
+        }
+        String targetText = JsonFormatTool.compactJson(sourceText);
+        xmlTargetText.setText("");
+        xmlTargetText.setText(targetText);
+    }
 }
