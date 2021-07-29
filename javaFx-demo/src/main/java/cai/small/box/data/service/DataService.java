@@ -32,7 +32,7 @@ public class DataService {
     public DataService(){
         URL xmlpath = Config.class.getClassLoader().getResource("cai/small/box/data/config/IPing.xml");
         ipFilePath = xmlpath.getPath();
-        System.out.println(xmlpath.getPath());
+        System.out.println("right path : " + xmlpath.getPath());
     }
 
     /**

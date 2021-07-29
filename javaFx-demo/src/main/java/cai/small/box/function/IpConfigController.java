@@ -146,7 +146,7 @@ public class IpConfigController implements Initializable {
     }
 
     private void saveIpList(String newIp){
-        dataService.setIPingFilePath(dataService.getIPingFilePath());
+        dataService.setIPingFilePath(new File(dataService.getIpFilePath()));
         dataService.loadIPingFromFile(dataService.getIPingFilePath());
 
         if (!"".equals(newIp)){
@@ -178,7 +178,7 @@ public class IpConfigController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         dataService = new DataService();
 
-        dataService.setIPingFilePath(dataService.getIPingFilePath());
+        dataService.setIPingFilePath(new File(dataService.getIpFilePath()));
         dataService.loadIPingFromFile(dataService.getIPingFilePath());
 
         showPingList.clear();

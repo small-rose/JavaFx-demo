@@ -31,7 +31,7 @@
                                       <String fx:value="btn-info" />
                                   </styleClass>
                               </Button>
-                              <ChoiceBox fx:id="choiceBoxFormat" layoutX="170.0" layoutY="14.0" prefHeight="30.0" prefWidth="70.0" value="4">
+                              <ChoiceBox onAction="#xmlFormatChoiceBox" fx:id="choiceBoxXmlFormat" layoutX="170.0" layoutY="14.0" prefHeight="30.0" prefWidth="70.0" value="Tab">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
                                         <String fx:value="2" />
@@ -67,7 +67,16 @@
                                </styleClass>
                               </Button>
                               <Label layoutX="106.0" layoutY="19.0" text="缩进空格" />
-                              <ChoiceBox layoutX="170.0" layoutY="14.0" prefHeight="30.0" prefWidth="70.0" />
+                               <ChoiceBox onAction="#jsonFormatChoiceBox" fx:id="choiceBoxJsonFormat" layoutX="170.0" layoutY="14.0" prefHeight="30.0" prefWidth="70.0" value="Tab" >
+                                   <items>
+                                       <FXCollections fx:factory="observableArrayList">
+                                           <String fx:value="2" />
+                                           <String fx:value="4" />
+                                           <String fx:value="8" />
+                                           <String fx:value="Tab" />
+                                       </FXCollections>
+                                   </items>
+                               </ChoiceBox>
                               <Button layoutX="300.0" layoutY="14.0" mnemonicParsing="false" text="压缩" >
                                <styleClass>
                                    <String fx:value="btn" />

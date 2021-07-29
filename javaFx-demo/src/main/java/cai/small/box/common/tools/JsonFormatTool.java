@@ -1,10 +1,15 @@
 package cai.small.box.common.tools;
 
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.*;
 
 /**
  * @description: TODO 功能角色说明：
@@ -29,6 +34,7 @@ public class JsonFormatTool {
      * 单位缩进字符串。
      */
     private static String SPACE = "    ";
+
 
     /**
      * 返回格式化JSON字符串。
@@ -122,5 +128,43 @@ public class JsonFormatTool {
             result.append(SPACE);
         }
         return result.toString();
+    }
+
+
+
+
+    public static String compactJson(String sourceText) {
+
+        parseData(sourceText);
+
+        return "";
+    }
+
+    private static Map<String, Object> parseData(String data){
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson = gsonBuilder.create();
+        Map<String, Object> map = gson.fromJson(data, new TypeToken<Map<String, Object>>() {
+
+        }.getType());
+        return map;
+    }
+
+
+
+    public static void main(String[] args) {
+        String data = "{\"a\":1,\"b\":2,\"c\":1,\"d\":2,\"e\":1,\"f\":2}";
+        System.out.println(parseData(data));
+
+        String data2 = "[{\"a\":1,\"b\":[{\"b1\":1,\"b2\":2}]},{\"c\":1,\"d\":2}]";
+        System.out.println(parseData(data2));
+
+        String data3 = "[{\"a\":1,\"b\":{\"b1\":1,\"b2\":2}},{\"c\":1,\"d\":2}]";
+        System.out.println(parseData(data3));
+
+        String data4 = "{\"a\":1,\"b\":{\"b1\":1,\"b2\":2},\"c\":1,\"d\":2}";
+        System.out.println(parseData(data4));
+
+        String data5 = "{\"a\":1,\"b\":[{\"b1\":1,\"b2\":2},{\"b3\":1,\"b4\":2}],\"c\":1,\"d\":2}";
+        System.out.println(parseData(data5));
     }
 }

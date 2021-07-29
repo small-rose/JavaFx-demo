@@ -4,6 +4,7 @@ import cai.small.box.common.core.StageManager;
 import cai.small.box.common.tools.JsonFormatTool;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.dom4j.DocumentException;
@@ -28,6 +29,12 @@ public class FormatViewController {
     private TextArea xmlSourceText;
     @FXML
     private TextArea  xmlTargetText;
+
+    @FXML
+    private ChoiceBox choiceBoxXmlFormat;
+    @FXML
+    private ChoiceBox choiceBoxJsonFormat;
+
 
     private static Stage stage ;
 
@@ -90,6 +97,37 @@ public class FormatViewController {
         xmlTargetText.setText(targetText);
     }
 
+    /**
+     * 空格缩进
+     * @param actionEvent
+     */
+    public void xmlFormatChoiceBox(ActionEvent actionEvent){
+        //int selectedIndex = choiceBoxXmlFormat.getSelectionModel().getSelectedIndex();
+        //Object selectedItem = choiceBoxXmlFormat.getSelectionModel().getSelectedItem();
+        //System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
+        //System.out.println("   ComboBox.getValue(): " + choiceBoxXmlFormat.getValue());
+        String indent = (String) choiceBoxXmlFormat.getValue();
+        String sourceText = xmlSourceText.getText();
+        if ("".equals(sourceText.trim())){
+            AlertUtil.alertInfoDialog(stage, "提示", "XML是空的，请帖入XML");
+            return;
+        }
+        String targetText = null;
+        try {
+            targetText = XmlFormatTool.prettyFormat(sourceText, indent);
+        } catch (DocumentException e) {
+            e.printStackTrace();
+            AlertUtil.alertErrorDialog(stage, "错误", "XML文档格式错误,检查后再格式化");
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            AlertUtil.alertErrorDialog(stage, "错误", e.getMessage());
+        }
+
+        xmlTargetText.setText("");
+        xmlTargetText.setText(targetText);
+    }
+
 
     /**
      * json 格式化
@@ -122,5 +160,14 @@ public class FormatViewController {
         String targetText = JsonFormatTool.compactJson(sourceText);
         xmlTargetText.setText("");
         xmlTargetText.setText(targetText);
+    }
+
+    public void jsonFormatChoiceBox(ActionEvent actionEvent){
+
+        int selectedIndex = choiceBoxJsonFormat.getSelectionModel().getSelectedIndex();
+        Object selectedItem = choiceBoxJsonFormat.getSelectionModel().getSelectedItem();
+        System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
+        System.out.println("   ComboBox.getValue(): " + choiceBoxJsonFormat.getValue());
+
     }
 }

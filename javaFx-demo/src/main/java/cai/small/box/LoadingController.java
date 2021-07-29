@@ -22,12 +22,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class LoadingController extends Application {
 
     private  final StageManager stageManager = StageManager.getInstance();
@@ -44,13 +46,13 @@ public class LoadingController extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
 
-        System.out.println("开始初始化 load fxml");
+        log.info("load  loading fxml");
         initLoading();
 
         primaryStage.show();
 
 
-        System.out.println("开始初始化 mainView fxml");
+        log.info("load mainView fxml");
         initMainWin(GlobalConstants.WINDOW.MAIN);
 
         //获取Task任务(也就是主逻辑方法)
@@ -182,7 +184,8 @@ public class LoadingController extends Application {
         mainStage.initModality(Modality.APPLICATION_MODAL);
         mainStage.setOnCloseRequest(event -> {
 
-            MySystemTray.getInstance().hide(mainStage);
+            //MySystemTray.getInstance().hide(mainStage);
+            Platform.exit();
             /*
             boolean bool = AlertUtil.AlertConfirmDialog(mainStage, "退出软件提示", "确认关闭软件吗？");
             if (bool) {

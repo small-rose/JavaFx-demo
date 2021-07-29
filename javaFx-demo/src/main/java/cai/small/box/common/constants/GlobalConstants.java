@@ -20,11 +20,8 @@ public class GlobalConstants {
 
     public static final String LOGO_URL = "/resources/images/logo.png";
 
-    public static Image LOGO_IMAGE = new Image(GlobalConstants.class.getResourceAsStream(LOGO_URL));
+    public static Image LOGO_IMAGE = new Image(String.valueOf(GlobalConstants.class.getResource(LOGO_URL)));
 
-    static {
-        LOGO_IMAGE = new Image(GlobalConstants.class.getResourceAsStream(LOGO_URL));
-    }
 
 
     public static class WINDOW{
