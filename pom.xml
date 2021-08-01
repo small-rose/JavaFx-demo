@@ -20,5 +20,7 @@
     <modules>
         <module>javaFx-demo</module>
         <module>JsonParser</module>
+        <module>javaFx-client</module>
+        <module>javaFx-server</module>
     </modules>
 </project>
