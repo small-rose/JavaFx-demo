@@ -36,6 +36,12 @@ public class FormatViewController {
     private ChoiceBox choiceBoxJsonFormat;
 
 
+    @FXML
+    private TextArea jsonSourceText;
+    @FXML
+    private TextArea  jsonTargetText;
+
+
     private static Stage stage ;
 
     static {
@@ -135,14 +141,14 @@ public class FormatViewController {
      */
     public void jsonFormatOnAction(ActionEvent actionEvent){
 
-        String sourceText = xmlSourceText.getText();
+        String sourceText = jsonSourceText.getText();
         if ("".equals(sourceText.trim())){
             AlertUtil.alertInfoDialog(stage, "提示", "Json是空的，请帖入你的Json字符串");
             return;
         }
         String targetText = JsonFormatTool.prettyFormat(sourceText);
-        xmlTargetText.setText("");
-        xmlTargetText.setText(targetText);
+        jsonTargetText.setText("");
+        jsonTargetText.setText(targetText);
     }
 
 
@@ -152,14 +158,14 @@ public class FormatViewController {
      */
     public void jsonCompactOnAction(ActionEvent actionEvent){
 
-        String sourceText = xmlSourceText.getText();
+        String sourceText = jsonSourceText.getText();
         if ("".equals(sourceText.trim())){
             AlertUtil.alertInfoDialog(stage, "提示", "Json是空的，请帖入你的Json字符串");
             return;
         }
         String targetText = JsonFormatTool.compactJson(sourceText);
-        xmlTargetText.setText("");
-        xmlTargetText.setText(targetText);
+        jsonTargetText.setText("");
+        jsonTargetText.setText(targetText);
     }
 
     public void jsonFormatChoiceBox(ActionEvent actionEvent){

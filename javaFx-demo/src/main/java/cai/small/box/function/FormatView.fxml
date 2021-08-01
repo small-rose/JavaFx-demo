@@ -18,7 +18,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="672.0" prefWidth="511.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <TextArea layoutX="49.0" layoutY="87.0" prefHeight="412.0" prefWidth="296.0" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="55" fx:id="xmlSourceText" />
+                              <TextArea wrapText="true" layoutX="49.0" layoutY="87.0" prefHeight="412.0" prefWidth="296.0" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="55" fx:id="xmlSourceText" />
                               <Button layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#xmlFormatOnAction" text="格式化">
                                    <styleClass>
                                        <String fx:value="btn" />
@@ -59,8 +59,8 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <TextArea prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
-                              <Button layoutX="20.0" layoutY="14.0" mnemonicParsing="false" text="格式化">
+                              <TextArea fx:id="jsonSourceText" wrapText="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
+                              <Button  onAction="#jsonFormatOnAction" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" text="格式化">
                                <styleClass>
                                    <String fx:value="btn" />
                                    <String fx:value="btn-info" />
@@ -87,7 +87,7 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <TextArea prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
+                              <TextArea fx:id="jsonTargetText" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
                            </children>
                         </AnchorPane>
                     </items>
